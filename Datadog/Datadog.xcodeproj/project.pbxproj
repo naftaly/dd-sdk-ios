@@ -8398,6 +8398,7 @@
 				D2BCB2A12B7B8107005C2AAB /* WKWebViewRecorder.swift in Sources */,
 				61054E712A6EE10A00AAA894 /* TouchSnapshot.swift in Sources */,
 				61054E8A2A6EE10A00AAA894 /* WindowViewTreeSnapshotProducer.swift in Sources */,
+				966253B62C98807400B90B63 /* PrivacyLevel+SessionReplay.swift in Sources */,
 				61054E7A2A6EE10A00AAA894 /* UIImageViewRecorder.swift in Sources */,
 				A7B932FC2B1F6A0A00AE6477 /* SRDataModels.swift in Sources */,
 				A795069C2B974C8200AC4814 /* SessionReplay+objc.swift in Sources */,
