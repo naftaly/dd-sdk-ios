@@ -6,6 +6,10 @@
 
 import Foundation
 
+/// Good number for Knuth hashing (large, prime, fit in 64 bit long)
+internal let SAMPLER_HASHER: UInt64 = 1_111_111_111_111_111_111
+internal let MAX_ID: UInt64 = 0xFFFFFFFFFFFFFFFF
+
 /// Protocol for determining sampling decisions.
 public protocol Sampling {
     /// Determines whether sampling should be performed.
@@ -41,6 +45,14 @@ internal struct DeterministicSampler: Sampling {
     init(shouldSample: Bool, samplingRate: Float) {
         self.samplingRate = samplingRate
         self.shouldSample = shouldSample
+    }
+
+    init(baseId: UInt64, samplingRate: Float) {
+        // We use overflow multiplication to create a "randomized" hash based on the input id
+        let hash = baseId &* SAMPLER_HASHER
+        let threshold = UInt64(Float(MAX_ID) * samplingRate / 100.0)
+        self.samplingRate = samplingRate
+        self.shouldSample = hash < threshold
     }
 
     func sample() -> Bool { shouldSample }
